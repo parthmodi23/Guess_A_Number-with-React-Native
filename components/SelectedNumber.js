@@ -3,9 +3,9 @@ import color from "../constant/color";
 import {View,Text,StyleSheet} from  'react-native';
 const SelectedNumber=(props)=>{
     return(
-            <View style={Styles.NumberOuterBox}>
+            <View style={{...Styles.NumberOuterBox,...props.style}}>
                 <Text>{console.log(props)}</Text>
-                <Text style={Styles.number}>{props.children}</Text>
+                <Text style={{...Styles.number,...props.style}}>{props.children}</Text>
             </View>
     )
 }
@@ -19,19 +19,18 @@ const Styles=StyleSheet.create({
         borderColor:color.success,
         marginVertical:10,
         justifyContent:'center',
-        textAlign:'center',
         alignItems:'center',
 
     },
     number:{
         fontSize:30,
         color:color.success,
-        padding:10,
-        marginVertical:0,
-        marginHorizontal:25,
+        // padding:10,
+        marginHorizontal:20,
         textAlign:'center',
         justifyContent:'center',
-        alignItems:'center'
+        alignItems:'center',
+        paddingBottom:20
 
     }
 

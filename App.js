@@ -2,18 +2,47 @@ import { StyleSheet,Text, View } from 'react-native';
 import Header from './components/Header';
 import StartGameScreen from './screens/StartGameScreen';
 import GameScreen from './screens/GameScreen';
+import GameOverScreen from './screens/GameOverScreen';
 import { useState } from 'react';
-export default function App() {
+import {useFonts} from 'expo-font';
+import AppLoading from 'expo-app-loading'
+import TitleText from './components/TitleText';
 
-  const  [userNumber,setUserNumber] = useState()
+export default  App=()=> {
 
-  const startGameHandler=(selectednumber)=>{
+
+let [fontLoaded] =useFonts({
+    'open-sans':require('./assets/fonts/OpenSans-Regular.ttf'),
+    'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf'), 
+  });
+
+  const [userNumber,setUserNumber] = useState()
+  const [guessRound,setGuessRound] = useState(0)
+
+
+
+
+  const StartNewGame=()=>{
+    setUserNumber (null)
+    setGuessRound(0)
+  }
+
+const gameOverHandler=(numOfROund)=>{
+  setGuessRound(numOfROund)
+}
+const startGameHandler=(selectednumber)=>{
     setUserNumber(selectednumber); 
   }
-  let content=<StartGameScreen onStartGame={startGameHandler}  />
+ let content=<StartGameScreen onStartGame={startGameHandler}  />
 
-  if(userNumber){
-    content=<GameScreen userChoice={userNumber}/>
+  if(userNumber && guessRound<=0){
+    content=<GameScreen userChoice={userNumber} onGameOver={gameOverHandler}/>
+  }else if(guessRound>0){
+    content=<GameOverScreen NumberOfRound={guessRound} SelectedNumber={userNumber} StartNew={StartNewGame}/>
+  }
+
+  if(!fontLoaded){
+    return <AppLoading/>
   }
   return (
     <View style={styles.MainScreen}>

@@ -11,6 +11,9 @@ import Card from "../components/Card";
 import color from "../constant/color";
 import Input from "../components/Input";
 import SelectedNumber from "../components/SelectedNumber";
+import BodyText from "../components/BodyText";
+import TitleText from "../components/TitleText";
+import MainButton from "../components/MainButton";
 const StartGameScreen = (props) => {
 
 //This is basically check whether input is interger or not if not then user cant enter that number
@@ -46,14 +49,14 @@ const StartGameScreen = (props) => {
          <Card style={Styles.summurycontainer}>
             <Text style={Styles.textcss}>Selected number is</Text>
             <SelectedNumber>{selectednumber}</SelectedNumber>
-            <Button title="Start The Game" onPress={()=>props.onStartGame(selectednumber)}/>
+            <MainButton onPress={()=>props.onStartGame(selectednumber)}>Start The Game</MainButton>
          </Card>
     }
     return (
         <TouchableWithoutFeedback onPress={()=>{Keyboard.dismiss()}}>
         <View style={Styles.Screen}>
             <View>
-                <Text style={Styles.DefaultText}>Start The Game!</Text>
+                <BodyText style={Styles.DefaultText}>Start The Game!</BodyText>
             </View>
             <Card style={Styles.InputContainer}>
                      <Input placeholder='Enter the Number' 
@@ -64,9 +67,10 @@ const StartGameScreen = (props) => {
                      />
                 <View style={Styles.ButtonContainer}>
                     <View style={Styles.InnerButton}>
-                        <Button title="Reset" color={color.info} onPress={handleResetbutton} /></View>
+                        <MainButton  onPress={handleResetbutton}>Reset</MainButton> 
+                    </View>
                     <View style={Styles.InnerButton}>
-                        <Button title="Confirm"color={color.success} onPress={handleConfirmbutton} />
+                        <MainButton color={color.success} onPress={handleConfirmbutton} >Confirm</MainButton>
                     </View>
                 </View>
             </Card>   
@@ -121,6 +125,9 @@ const Styles = StyleSheet.create({
     },
     textcss:{
         fontSize:20,
+    },
+    innerbutton:{
+        backgroundColor:'green'
     }
 
 });
