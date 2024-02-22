@@ -1,10 +1,11 @@
 import React from 'react'
-import { StyleSheet, View,Text } from 'react-native';
+import { StyleSheet, View,Text, Platform, ToastAndroid } from 'react-native';
 import color from '../constant/color';
 import TitleText from './TitleText';
 const Header = (props) =>{
     return(
-        <View style={styles.header}>
+        <View style={{...styles.header,...Platform.select(
+            {ios:styles.headerIos,android:styles.headerAndroid})}}>
             <TitleText style={styles.headerTitle}>{props.title}</TitleText>
         </View>
 
@@ -13,7 +14,16 @@ const Header = (props) =>{
 
 const styles=StyleSheet.create({
 
-    header:{
+    headerIos:{
+        width:'100%',
+        height:90,
+        paddingTop:36,
+        backgroundColor:'lightgreen',
+        alignItems:'center',
+        justifyContent:'center',
+    },
+    
+    headerAndroid:{
         width:'100%',
         height:90,
         paddingTop:36,

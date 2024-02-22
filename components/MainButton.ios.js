@@ -1,19 +1,23 @@
 import React from "react";
-import { TouchableOpacity, View ,StyleSheet,Text} from "react-native";
+import { TouchableOpacity, View ,StyleSheet,Text,TouchableNativeFeedback} from "react-native";
 import color from "../constant/color";
 
 const MainButton=props=>{
-    return(
 
-<TouchableOpacity onPress={props.onPress} style={props.color}>
+    let ButtonComponent=TouchableNativeFeedback;
+
+      
+    return(
+<ButtonComponent onPress={props.onPress} style={props.color}>
         <View style={{...Styles.mainbutton,...props.style}}>
             <Text style={Styles.buttontext}>{props.children}</Text>
         </View>
-</TouchableOpacity>
+</ButtonComponent>
     )
 }
 
 const Styles=StyleSheet.create({
+//remove this buttoncontainer and you will get the real rippel effect 
 
     mainbutton:{
         width:'100%',

@@ -5,7 +5,10 @@ import { View,
       Button ,
       TouchableWithoutFeedback,
       Keyboard,
-      Alert
+      Alert,
+      Dimensions,
+      ScrollView,
+      Platform
     } from "react-native";
 import Card from "../components/Card";
 import color from "../constant/color";
@@ -15,6 +18,7 @@ import BodyText from "../components/BodyText";
 import TitleText from "../components/TitleText";
 import MainButton from "../components/MainButton";
 const StartGameScreen = (props) => {
+    // <ScrollView>
 
 //This is basically check whether input is interger or not if not then user cant enter that number
     const [enterdnumber,SetEnterdNumber]=useState('')
@@ -53,6 +57,7 @@ const StartGameScreen = (props) => {
          </Card>
     }
     return (
+        <ScrollView>
         <TouchableWithoutFeedback onPress={()=>{Keyboard.dismiss()}}>
         <View style={Styles.Screen}>
             <View>
@@ -77,6 +82,7 @@ const StartGameScreen = (props) => {
             {confirmedOutput}     
         </View>
         </TouchableWithoutFeedback>
+        </ScrollView>
     );
 }
 
@@ -121,7 +127,8 @@ const Styles = StyleSheet.create({
     summurycontainer:{
         marginVertical:20,
         alignItems:'center',
-        padding:20
+        padding:Dimensions.get('window').width/20,
+        
     },
     textcss:{
         fontSize:20,

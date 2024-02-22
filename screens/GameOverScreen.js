@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Text, Button, Image } from "react-native";
+import { StyleSheet, View, Text, Button, Image, ScrollView, Dimensions,SafeAreaView } from "react-native";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import color from "../constant/color";
 import BodyText from "../components/BodyText";
@@ -8,6 +8,7 @@ import MainButton from "../components/MainButton";
 
 const GameOverScreen = props => {
     return (
+        <ScrollView>
         <View style={Styles.MainScreen}>
             <BodyText>The Game is over!</BodyText>
             <View style={Styles.imagecontainer}>
@@ -15,6 +16,7 @@ const GameOverScreen = props => {
             <BodyText style={Styles.Maintext}>You Take <Text style={Styles.innertext}>{props.NumberOfRound}</Text> Round to complete the Game and Your Number was <Text style={Styles.innertext}>{props.SelectedNumber}</Text></BodyText>
             <MainButton onPress={props.StartNew}>Start New Game</MainButton>  
         </View>
+        </ScrollView>
     );
 }
 
@@ -22,15 +24,17 @@ const Styles = StyleSheet.create({
     MainScreen: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        paddingVertical:10,
     },
     imagecontainer: {
-        width: 300,
-        height: 300,
-        borderRadius: 150,
+        width: Dimensions.get('window').width * 0.7,
+        height: Dimensions.get('window').width * 0.7,
+        borderRadius: (Dimensions.get('window').width*0.7)/2,
         borderColor: 'black',
         borderWidth: 3,
-        marginVertical: 10
+        overflow:'hidden',
+        marginVertical: Dimensions.get('window').height/30,
     },
     image: {
         width: '100%',
