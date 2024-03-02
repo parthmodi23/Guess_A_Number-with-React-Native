@@ -1,15 +1,5 @@
 import React, { useState } from "react";
-import { View,
-     Text, 
-     StyleSheet,
-      Button ,
-      TouchableWithoutFeedback,
-      Keyboard,
-      Alert,
-      Dimensions,
-      ScrollView,
-      Platform
-    } from "react-native";
+import { View,Text, StyleSheet,TouchableWithoutFeedback,Keyboard, Alert, Dimensions,ScrollView,Platform} from "react-native";
 import Card from "../components/Card";
 import color from "../constant/color";
 import Input from "../components/Input";
@@ -20,7 +10,7 @@ import MainButton from "../components/MainButton";
 const StartGameScreen = (props) => {
     // <ScrollView>
 
-//This is basically check whether input is interger or not if not then user cant enter that number
+//This is basically check whether input is interger or not if not then user can't enter the number
     const [enterdnumber,SetEnterdNumber]=useState('')
     const [Confirm,SetConfirm]= useState(false)
     const [selectednumber,SetSelectedNumber]=useState()

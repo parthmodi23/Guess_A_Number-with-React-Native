@@ -15,7 +15,8 @@ const styles=StyleSheet.create({
         shadowRadius:0,
         shadowOpacity:0.26,
         backgroundColor:color.white,
-        borderRadius:10
+        borderRadius:10,
+      
     }
 
 });
