@@ -88,9 +88,11 @@ const Styles = StyleSheet.create({
         marginVertical: 15,
     },
     InputContainer: {
-        width: 400,
-        height: 150,
-        maxHeight: '40%',
+        // width: 290,
+        // height: 250,
+        minHeight:'30%',
+        minWidth:'90%',
+        maxHeight: '90%',
         maxWidth: '90%',
         justifyContent: 'center',
         alignItems: 'center',
@@ -109,7 +111,7 @@ const Styles = StyleSheet.create({
         flexDirection: 'row',
         width: '80%',
         justifyContent: 'space-evenly',
-        marginVertical: 20,
+        marginVertical: 15,
     },
     InnerButton: {
         width: '35%'

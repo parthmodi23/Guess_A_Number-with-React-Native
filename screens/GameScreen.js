@@ -51,12 +51,13 @@ const GameScreen = props => {
   }, [currentGuess, userChoice, onGameOver]);
 
   const nextGuessHandler = direction => {
+    
     if (
       (direction === 'lower' && currentGuess < props.userChoice) ||
       (direction === 'greater' && currentGuess > props.userChoice)
     ) {
       Alert.alert("Hold on!", 'Are you sure that this is correct?', [
-        { text: 'My bad!', style: 'cancel' }
+        { text: 'Sorry!', style: 'cancel' }
       ]);
       return;
     }
@@ -76,8 +77,44 @@ const GameScreen = props => {
 
   const isAndroid = Platform.OS === 'android';
 
+  if(Dimensions.get('window').width>500){
+    return (
+      <View style={styles.screen}>
+        <TitleText>Opponent's Guess</TitleText>
+        <Card style={styles.buttonContainer}>
+          <View style={styles.innerbutton}>
+            <MainButton onPress={() => nextGuessHandler('lower')}>
+              LOWER
+            </MainButton>
+          </View>
+          <View>
+          <SelectedNumber>{currentGuess}</SelectedNumber>
+
+          </View>
+          <View style={styles.innerbutton}>
+            <MainButton onPress={() => nextGuessHandler('greater')}>
+              GREATER
+            </MainButton>
+          </View>
+        </Card>
+        
+        <ScrollView>
+        <View style={styles.listContainer}>
+        
+          <FlatList
+            keyExtractor={item => item}
+            data={pastGuesses}
+            renderItem={renderListItem}
+            contentContainerStyle={styles.list}
+          />
+         
+        </View>
+        </ScrollView>
+      </View>
+  );
+  }
+
   return (
-    <ScrollView>
       <View style={styles.screen}>
         <TitleText>Opponent's Guess</TitleText>
         <SelectedNumber>{currentGuess}</SelectedNumber>
@@ -93,16 +130,20 @@ const GameScreen = props => {
             </MainButton>
           </View>
         </Card>
+        
+        <ScrollView>
         <View style={styles.listContainer}>
+        
           <FlatList
             keyExtractor={item => item}
             data={pastGuesses}
             renderItem={renderListItem}
             contentContainerStyle={styles.list}
           />
+         
         </View>
+        </ScrollView>
       </View>
-    </ScrollView>
   );
 };
 
